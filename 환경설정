@@ -1,0 +1,5 @@
+
+python은 32bit windows로 사용
+
+"pip install pywin32" : COM 호출하기 위한 py lib
+
