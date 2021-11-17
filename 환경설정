@@ -1,5 +1,8 @@
+개발환경
+python : 32bit windows
+OS : windows
+증권사 : 이베스트
 
-python은 32bit windows로 사용
-
-"pip install pywin32" : COM 호출하기 위한 py lib
+개발환경 setting 
+"pip install pywin32" : COM 호출하기 위한 py lib 설치
 
