@@ -1,5 +1,5 @@
 import unittest
-from agent.ebest import EBest
+from stocklab.agent.ebest import EBest
 import inspect
 import time
 
