@@ -11,7 +11,13 @@ DBMS : MongoDB
 "pin install Flask Flask-Restful" : flask, flask restful lib 설치
 "pip install flask-cors"
 
+react client 설정
+node js 설치
+"npx create-react-app stocklab-react" : react 프로젝트 생성 (stocklab-react 디렉토리에)
+"npm install @material-ui/core @material-ui/icons --save" : material ui 설치
+"npm install material-table --save"
+"npm install recharts --save"
 
 명령어 정리
 "python -m unittest tests.test_agent_ebest"  : unit test 명령여
-
+"git rm -r --cached ." : gitignore 작성 후 안 먹을때 refresh
