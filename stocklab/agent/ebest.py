@@ -221,9 +221,6 @@ class EBest:
                                 *out_params,
                                 **in_params)
 
-        for item in result:
-            item["code"] = code
-
         return result
  
     def get_stock_price_by_code(self, code=None, cnt="1"):
@@ -523,11 +520,15 @@ class EBest:
                     "LoanDt":"", "OrdCndiTpCode":"0"}
         out_params = ["OrdNo", "OrdTime", "OrdMktCode", "OrdPtnCode", "ShtnIsuNo", "MgempNo", "OrdAmt", "SpotOrdQty", "IsuNm"]
 
+
         result = self._execute_query("CSPAT00600",
-                                    "CSPAT00600InBlock1",
-                                    "CSPAT00600OutBlock2",
-                                    *out_params,
-                                    **in_params)
+                                        "CSPAT00600InBlock1",
+                                        "CSPAT00600OutBlock2",
+                                        *out_params,
+                                        **in_params)
+#NotDefined
+#CSPAT00600OutBlock2
+
         return result
 
     def order_cancel(self, order_no, code, qty):
@@ -569,6 +570,25 @@ class EBest:
         if tick is not None:
             return result[tick]
         return result
+
+    def get_jango(self):
+
+        in_params = {"accno": self.account, "passwd": self.passwd,
+                    "prcgb":"1", "chegb":"2",
+                    "dangb":"0", "charge":"1", "cts_expcode":" "}
+        
+#        out_params = ["expcode", "jangb", "janqty", "mdposqt", "pamt", "mamt","sinamt", 
+#        "lastdt","msat","mpms","mdat","mpmd","jsat","jpms","jdat","jpmd","sysprocseq","loandt",
+#        "hname","marketgb","jonggb","janrt","price","appamt","dtsunik","sunikrt","fee","tax","sininter"]
+
+        out_params = ["hname", "janqty", "sunikrt"]
+
+        result_list = self._execute_query("t0424",
+                                        "t0424InBlock",
+                                        "t0424OutBlock1",
+                                        *out_params,
+                                        **in_params)
+        return result_list
 
 class Field:
     t1101 = {
@@ -788,6 +808,39 @@ class Field:
         }
     }
 
+    t0424 ={
+        "t0424OutBlock1":{
+            "expcode":"종목번호",
+            "jangb":"잔고구분",
+            "janqty":"잔고수량",
+            "mdposqt":"매도가능수량",
+            "pamt":"평균단가",
+            "mamt":"매입금액",
+            "sinamt":"대출금액",
+            "lastdt":"만기일자",
+            "msat":"당일매수금액",
+            "mpms":"당일매수단가",
+            "mdat":"당일매도금액",
+            "mpmd":"당일매도단가",
+            "jsat":"전일매수금액",
+            "jpms":"전일매수단가",
+            "jdat":"전일매도금액",
+            "jpmd":"전일매도단가",
+            "sysprocseq":"처리순번",
+            "loandt":"대출일자",
+            "hname":"종목명",
+            "marketgb":"시장구분",
+            "jonggb":"종목구분",
+            "janrt":"보유비중",
+            "price":"현재가",
+            "appamt":"평가금액",
+            "dtsunik":"평가손익",
+            "sunikrt":"수익율",
+            "fee":"수수료",
+            "tax":"제세금",
+            "sininter":"신용이자"
+        }
+    }
     t0425 ={
         "t0425OutBlock1":{
             "ordno":"주문번호",
@@ -1120,6 +1173,11 @@ class Field:
             "RsvOrdNo":"예약주문번호",
             "AcntNm":"계좌명",
             "IsuNm":"종목명"
+        }
+    }
+
+    NotDefined = {
+        "NotDefinedOutBlock":{
         }
     }
         
